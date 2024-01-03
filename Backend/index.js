@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded());
-app.get("/login", (req, res) => {
+app.get("/", (req, res) => {
   res.sendFile(__dirname.replace("Backend", "Frontend") + "/index.html");
 });
 app.get("/back", (req, res) => {
