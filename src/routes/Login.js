@@ -1,10 +1,7 @@
 const jwt = require("jsonwebtoken");
-
+const db = require("../database/mysql");
 const getUser = async (username) => {
-  return {
-    password: "123456",
-    username,
-  };
+  return await db.FindUser(username);
 };
 
 module.exports = (app) =>

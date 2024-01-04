@@ -8,6 +8,11 @@ module.exports = async (env) => {
       database: env.database,
     })
     .promise();
-  var [rows] = await Pool.query("SELECT * FROM Users");
-  console.log(rows);
+  async function FindUserPass(username) {
+    const [rows] = await Pool.query(
+      `SELECT Password FROM Users WHERE username = ?`,
+      username
+    );
+    return rows[0].Password;
+  }
 };
