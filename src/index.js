@@ -2,12 +2,13 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const setupLoginRoute = require("./routes/Login.js");
 const setupAddRoute = require("./routes/add.js");
+const db = require("./database/mysql.js");
 const { config } = require("dotenv");
 const { cookieJwtAuth } = require("./middleware/cookieJwtAuth");
 
 const app = express();
 config();
-
+db(process.env);
 app.use(
   express.urlencoded({
     extended: true,
