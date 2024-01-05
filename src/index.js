@@ -1,29 +1,14 @@
-const express = require("express");
-const cookieParser = require("cookie-parser");
-const setupLoginRoute = require("./routes/Login.js");
-const setupAddRoute = require("./routes/add.js");
-const db = require("./database/mysql.js");
-const { config } = require("dotenv");
-const { cookieJwtAuth } = require("./middleware/cookieJwtAuth");
-
+import express from "express";
+import { posts } from "./routes/posts.js";
+import { gets } from "./routes/gets.js";
+import { uses } from "./routes/uses.js";
+import { config } from "dotenv";
 const app = express();
 config();
-db(process.env);
-app.use(
-  express.urlencoded({
-    extended: true,
-  })
-);
-app.use(cookieParser());
-app.get("/", cookieJwtAuth, (req, res) => {
-  res.sendFile(__dirname + "/Frontend/html/Main.html");
-});
-app.get("/registration", (req, res) => {
-  res.sendFile(__dirname + "/Frontend/html/registration.html");
-});
 
-setupLoginRoute(app);
-setupAddRoute(app);
+uses(app, express);
+posts(app);
+gets(app);
 
 app.listen(process.env.Port, () => {
   console.log(

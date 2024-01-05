@@ -1,6 +1,6 @@
-const jwt = require("jsonwebtoken");
+import jwt from "jsonwebtoken";
 
-exports.cookieJwtAuth = (req, res, next) => {
+export function cookieJwtAuth(req, res, next) {
   const token = req.cookies.token;
   try {
     const user = jwt.verify(token, process.env.Secret_Token);
@@ -10,4 +10,4 @@ exports.cookieJwtAuth = (req, res, next) => {
     res.clearCookie("token");
     return res.redirect("/registration");
   }
-};
+}
