@@ -8,7 +8,7 @@ export function gets(app) {
 function home(app) {
   app.get("/", cookieJwtAuth, (req, res) => {
     res.sendFile(
-      path.resolve(path.dirname("")) + "/src/Frontend/html/main.html"
+      path.resolve(path.dirname("")) + "/src/frontend/html/main.html"
     );
   });
 }
@@ -16,7 +16,7 @@ function home(app) {
 function registration(app) {
   app.get("/registration", (req, res) => {
     res.sendFile(
-      path.resolve(path.dirname("")) + "/src/Frontend/html/registration.html"
+      path.resolve(path.dirname("")) + "/src/frontend/html/registration.html"
     );
   });
 }
