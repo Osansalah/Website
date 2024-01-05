@@ -10,7 +10,7 @@ export function posts(app) {
 }
 export function add(app) {
   app.post("/add", cookieJwtAuth, (req, res) => {
-    console.log(req.user);
+    console.log("Add: " + req.user);
     res.redirect("/");
   });
 }

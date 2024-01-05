@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="css/registration.css" type="text/css" />
   </head>
   <body>
-    <div class="wrapper">
+    <div class="wrapper" id="log">
       <form action="/login" method="post">
         <h1>Login</h1>
         <div class="input_box">
@@ -33,7 +33,31 @@
         </div>
         <button type="submit" class="btn">Login</button>
         <div class="register-link">
-          <p>Don't have an account? <a href="#">Register</a></p>
+          <p>Don't have an account? <a id="regia">Register</a></p>
+        </div>
+      </form>
+    </div>
+
+    <div class="wrapper" id="regist">
+      <form action="/signup" method="post">
+        <h1>SignUp</h1>
+        <div class="input_box">
+          <input type="text" name="username" placeholder="username" required />
+          <i class="bx bxs-user"></i>
+        </div>
+        <div class="input_box">
+          <input
+            type="password"
+            name="password"
+            placeholder="password"
+            required
+          />
+          <i class="bx bxs-lock-alt"></i>
+        </div>
+
+        <button type="submit" class="btn">Signup</button>
+        <div class="register-link">
+          <p>Already have an account? <a id="logia">Login</a></p>
         </div>
       </form>
     </div>
@@ -44,5 +68,6 @@
       <input name="password" type="password" placeholder="password" />
       <button type="submit">Signup</button>
     </form>-->
+    <script src="javascript/registration.js"></script>
   </body>
 </html>
