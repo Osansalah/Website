@@ -8,7 +8,7 @@ export function gets(app) {
 function home(app) {
   app.get("/", cookieJwtAuth, (req, res) => {
     res.sendFile(
-      path.resolve(path.dirname("")) + "/src/Frontend/html/Main.html"
+      path.resolve(path.dirname("")) + "/src/Frontend/html/main.html"
     );
   });
 }

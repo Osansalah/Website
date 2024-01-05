@@ -8,5 +8,5 @@ export function uses(app, express) {
     })
   );
   app.use(cookieParser());
-  app.use(express.static(path.resolve(path.dirname("")) + "/src/Frontend"));
+  app.use(express.static(path.resolve(path.dirname("")) + "/src/frontend"));
 }
