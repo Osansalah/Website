@@ -12,6 +12,6 @@ gets(app);
 
 app.listen(process.env.Port, () => {
   console.log(
-    `Server is running on port: http://de1.bot-hosting.net:${process.env.Port}/ \n http://127.0.0.1:${process.env.Port}`
+    `Server is running on port: http://${process.env.webdomain}:${process.env.Port}/ \n http://127.0.0.1:${process.env.Port}`
   );
 });
