@@ -1,8 +1,7 @@
+import { User } from "../Database/MongoDB/Models/Users.js";
 import { cookieJwtAuth } from "../middleware/cookieJwtAuth.js";
 import jwt from "jsonwebtoken";
-const getUser = async (username) => {
-  return { password: "123456", username };
-};
+
 export function posts(app) {
   add(app);
   login(app);
@@ -10,7 +9,7 @@ export function posts(app) {
 }
 export function add(app) {
   app.post("/add", cookieJwtAuth, (req, res) => {
-    console.log("Add: " + req.user);
+    /// console.log("Add: " + req.user);
     res.redirect("/");
   });
 }
@@ -19,31 +18,44 @@ export function login(app) {
   app.post("/login", async (req, res) => {
     const { username, password } = req.body;
 
-    const user = await getUser(username);
-
+    const user = await User.findOne(
+      { username: username },
+      "username password"
+    ).exec();
     if (!user || user.password !== password) {
-      return res.status(403).json({
-        error: "invalid login",
-      });
+      console.log("not found");
+      return res.redirect("/");
     }
 
-    const token = jwt.sign(user, process.env.Secret_Token, { expiresIn: "1h" });
+    const token = jwt.sign(
+      { username: username, password: password },
+      process.env.Secret_Token,
+      {
+        expiresIn: "1h",
+      }
+    );
 
     res.cookie("token", token);
-
     return res.redirect("/");
   });
 }
 export function Signup(app) {
   app.post("/signup", async (req, res) => {
     const { username, password } = req.body;
-
-    if (!username || !password) {
-      return res.status(403).json({
-        error: "non have to be empty",
-      });
+    const user = await User.findOne(
+      { username: username },
+      "username password"
+    ).exec();
+    if (user) {
+      console.log("there is one");
+      return res.redirect("/registration#regist");
     }
-    AddUser(username, password);
+    new User({
+      username: username,
+      password: password,
+    })
+      .save()
+      .catch(console.error);
     return res.redirect("/registration");
   });
 }
